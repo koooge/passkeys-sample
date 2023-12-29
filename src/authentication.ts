@@ -13,7 +13,7 @@ import { rpID } from './constants';
 import type { Authenticator, UserModel } from './types';
 
 // 1. Generate authentication options https://simplewebauthn.dev/docs/packages/server#1-generate-authentication-options
-const generateOptions = async (loggedInUserId: UserModel['id']) => {
+export const generateAuthOptions = async (loggedInUserId: UserModel['id']) => {
   // (Pseudocode) Retrieve the logged-in user
   const user: UserModel = getUserFromDB(loggedInUserId)!;
   // (Pseudocode) Retrieve any of the user's previously-

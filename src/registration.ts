@@ -12,7 +12,7 @@ import {
 import type { Authenticator, UserModel } from './types';
 
 // 1. Generate registration options https://simplewebauthn.dev/docs/packages/server#1-generate-registration-options
-export const generateOptions = async (loggedInUserId: UserModel['id']): Promise<ReturnType<typeof generateRegistrationOptions>> => {
+export const generateRegOptions = async (loggedInUserId: UserModel['id']): Promise<ReturnType<typeof generateRegistrationOptions>> => {
   // (Pseudocode) Retrieve the user from the database
   // after they've logged in
   const user: UserModel = getUserFromDB(loggedInUserId)!;
@@ -52,7 +52,7 @@ export const generateOptions = async (loggedInUserId: UserModel['id']): Promise<
 }
 
 // 2. Verify registration response https://simplewebauthn.dev/docs/packages/server#2-verify-registration-response
-export const verifyResponse = async (loggedInUserId: UserModel['id'], response: RegistrationResponseJSON): Promise<VerifiedRegistrationResponse> => {
+export const verifyRegResponse = async (loggedInUserId: UserModel['id'], response: RegistrationResponseJSON): Promise<VerifiedRegistrationResponse> => {
   // (Pseudocode) Retrieve the logged-in user
   const user: UserModel = getUserFromDB(loggedInUserId)!;
   // (Pseudocode) Get `options.challenge` that was saved above
