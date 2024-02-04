@@ -1,7 +1,7 @@
 import { generateRegistrationOptions, verifyRegistrationResponse, type VerifiedRegistrationResponse } from '@simplewebauthn/server';
 import type { RegistrationResponseJSON } from '@simplewebauthn/types';
 
-import { rpName, rpID } from './constants';
+import { rpName, rpID, origin } from './constants';
 import {
   getUserFromDB,
   getUserAuthenticators,
@@ -52,46 +52,45 @@ export const generateRegOptions = async (loggedInUserId: UserModel['id']): Promi
 }
 
 // 2. Verify registration response https://simplewebauthn.dev/docs/packages/server#2-verify-registration-response
-export const verifyRegResponse = async (loggedInUserId: UserModel['id'], response: RegistrationResponseJSON): Promise<VerifiedRegistrationResponse> => {
+export const verifyRegResponse = async (loggedInUserId: UserModel['id'], body: RegistrationResponseJSON): Promise<VerifiedRegistrationResponse> => {
   // (Pseudocode) Retrieve the logged-in user
   const user: UserModel = getUserFromDB(loggedInUserId)!;
   // (Pseudocode) Get `options.challenge` that was saved above
   const expectedChallenge: string = getUserCurrentChallenge(user)!;
 
   const verification = await verifyRegistrationResponse({
-    response,
+    response: body,
     expectedChallenge,
     expectedOrigin: origin,
     expectedRPID: rpID,
   });
 
-  // saveNewUserAuthenticator(user, verification);
+  saveNewUserAuthenticator(user, verification, body.response.transports as any);
 
   return verification;
 }
 
 // 3. Post-registration responsibilities https://simplewebauthn.dev/docs/packages/server#3-post-registration-responsibilities
-// const saveNewUserAuthenticator = (user: UserModel, verification: VerifiedRegistrationResponse) => {
-//   const { registrationInfo } = verification;
-//   const {
-//     credentialPublicKey,
-//     credentialID,
-//     counter,
-//     credentialDeviceType,
-//     credentialBackedUp,
-//     transports,
-//   } = registrationInfo;
+const saveNewUserAuthenticator = (user: UserModel, verification: VerifiedRegistrationResponse, transports: Authenticator['transports']) => {
+  const { registrationInfo } = verification;
+  const {
+    credentialPublicKey,
+    credentialID,
+    counter,
+    credentialDeviceType,
+    credentialBackedUp,
+  } = registrationInfo!;
 
-//   const newAuthenticator: Authenticator = {
-//     credentialID,
-//     credentialPublicKey,
-//     counter,
-//     credentialDeviceType,
-//     credentialBackedUp,
-//     transports,
-//   };
+  const newAuthenticator: Authenticator = {
+    credentialID,
+    credentialPublicKey,
+    counter,
+    credentialDeviceType,
+    credentialBackedUp,
+    transports,
+  };
 
-//   // (Pseudocode) Save the authenticator info so that we can
-//   // get it by user ID later
-//   saveNewUserAuthenticatorInDB(user, newAuthenticator);
-// };
+  // (Pseudocode) Save the authenticator info so that we can
+  // get it by user ID later
+  saveNewUserAuthenticatorInDB(user, newAuthenticator);
+};
