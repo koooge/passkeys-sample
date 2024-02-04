@@ -9,7 +9,7 @@ import {
   saveUpdatedAuthenticatorCounter,
   setUserCurrentChallenge,
 } from './db';
-import { rpID } from './constants';
+import { rpID, origin } from './constants';
 import type { Authenticator, UserModel } from './types';
 
 // 1. Generate authentication options https://simplewebauthn.dev/docs/packages/server#1-generate-authentication-options

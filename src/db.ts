@@ -8,7 +8,11 @@ const users: Record<string, UserModel> = {
   'some-id-3': { id: 'some-id-3', username: 'some-username-3' },
 };
 
-const userAuthenticators: Record<UserModel['id'], Authenticator[]> = {};
+const userAuthenticators: Record<UserModel['id'], Authenticator[]> = {
+  'some-id-1': [],
+  'some-id-2': [],
+  'some-id-3': [],
+};
 
 export const getUserFromDB = (userId: UserModel['id']): UserModel | undefined => {
   return users[userId];
