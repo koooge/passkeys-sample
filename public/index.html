@@ -1,8 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
-  <body>
-    Hello, index.html
-  </body>
+<head>
+</head>
+<body>
+<p id="browserSupportsWebAuthn"></p>
+<p id="browserSupportsWebAuthnAutofill"></p>
+<p id="platformAuthenticatorIsAvailable"></p>
+
+<!-- UMD https://simplewebauthn.dev/docs/packages/browser#umd -->
+<script src="/public/index.umd.min.js"></script>
+<script defer>
+  const browserSupportsWebAuthn = document.getElementById('browserSupportsWebAuthn');
+  browserSupportsWebAuthn.innerText = `browserSupportsWebAuthn: ${SimpleWebAuthnBrowser.browserSupportsWebAuthn()}`
+
+  SimpleWebAuthnBrowser.browserSupportsWebAuthnAutofill().then(res => {
+    const browserSupportsWebAuthnAutofill = document.getElementById('browserSupportsWebAuthnAutofill');
+    browserSupportsWebAuthnAutofill.innerText = `browserSupportsWebAuthnAutofill: ${res}`
+  })
+
+  SimpleWebAuthnBrowser.platformAuthenticatorIsAvailable().then(res => {
+    const platformAuthenticatorIsAvailable = document.getElementById('platformAuthenticatorIsAvailable');
+    platformAuthenticatorIsAvailable.innerText = `platformAuthenticatorIsAvailable: ${res}`
+  })
+</script>
+</body>
 </html>
