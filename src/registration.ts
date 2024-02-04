@@ -1,5 +1,5 @@
 import { generateRegistrationOptions, verifyRegistrationResponse, type VerifiedRegistrationResponse } from '@simplewebauthn/server';
-import type { RegistrationResponseJSON } from '@simplewebauthn/typescript-types';
+import type { RegistrationResponseJSON } from '@simplewebauthn/types';
 
 import { rpName, rpID } from './constants';
 import {

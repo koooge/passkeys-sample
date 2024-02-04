@@ -1,6 +1,6 @@
 // https://simplewebauthn.dev/docs/packages/server#additional-data-structures
 
-import type { CredentialDeviceType } from '@simplewebauthn/typescript-types';
+import type { CredentialDeviceType } from '@simplewebauthn/types';
 
 export type UserModel = {
   id: string;

@@ -1,4 +1,4 @@
-import type { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/typescript-types';
+import type { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/types';
 
 import type { Authenticator, UserModel } from './types';
 

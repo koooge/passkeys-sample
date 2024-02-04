@@ -1,5 +1,5 @@
 import { generateAuthenticationOptions, verifyAuthenticationResponse, type VerifiedAuthenticationResponse } from '@simplewebauthn/server';
-import type { AuthenticationResponseJSON } from '@simplewebauthn/typescript-types';
+import type { AuthenticationResponseJSON } from '@simplewebauthn/types';
 
 import {
   getUserAuthenticator,

@@ -1,5 +1,5 @@
 import { createServer, type IncomingMessage } from 'node:http';
-import type { RegistrationResponseJSON, AuthenticationResponseJSON } from '@simplewebauthn/typescript-types';
+import type { RegistrationResponseJSON, AuthenticationResponseJSON } from '@simplewebauthn/types';
 
 import { generateRegOptions, verifyRegResponse } from './registration';
 import { generateAuthOptions, verifyAuthResponse } from './authentication';

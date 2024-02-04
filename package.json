@@ -13,11 +13,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@simplewebauthn/server": "^8.3.5"
+    "@simplewebauthn/server": "^9.0.1"
   },
   "devDependencies": {
-    "@simplewebauthn/typescript-types": "^8.3.4",
-    "@types/node": "^20.10.5",
+    "@simplewebauthn/types": "^9.0.1",
+    "@types/node": "^20.11.16",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
