@@ -1,6 +1,6 @@
 // https://simplewebauthn.dev/docs/packages/server#additional-data-structures
 
-import type { CredentialDeviceType } from '@simplewebauthn/types';
+import type { AuthenticatorTransportFuture, CredentialDeviceType } from '@simplewebauthn/types';
 
 export type UserModel = {
   id: string;
@@ -29,6 +29,6 @@ export type Authenticator = {
   // SQL: `BOOL` or whatever similar type is supported
   credentialBackedUp: boolean;
   // SQL: `VARCHAR(255)` and store string array as a CSV string
-  // Ex: ['usb' | 'ble' | 'nfc' | 'internal']
-  transports?: AuthenticatorTransport[];
+  // Ex: ['ble' | 'cable' | 'hybrid' | 'internal' | 'nfc' | 'smart-card' | 'usb']
+  transports?: AuthenticatorTransportFuture[];
 };

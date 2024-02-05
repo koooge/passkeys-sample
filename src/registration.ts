@@ -65,7 +65,7 @@ export const verifyRegResponse = async (loggedInUserId: UserModel['id'], body: R
     expectedRPID: rpID,
   });
 
-  saveNewUserAuthenticator(user, verification, body.response.transports as any);
+  saveNewUserAuthenticator(user, verification, body.response.transports);
 
   return verification;
 }
