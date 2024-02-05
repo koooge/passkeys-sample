@@ -41,7 +41,7 @@ export const generateRegOptions = async (loggedInUserId: UserModel['id']): Promi
       residentKey: 'preferred',
       userVerification: 'preferred',
       // Optional
-      authenticatorAttachment: 'platform',
+      // authenticatorAttachment: 'platform',
     },
   });
 
