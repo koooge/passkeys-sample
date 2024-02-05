@@ -10,7 +10,6 @@ const server = createServer(async (req, res) => {
   try {
     /* backend */
     if (req.method === 'GET' && req.url?.startsWith('/generate-registration-option')) {
-      console.log(req);
       const opts = await generateRegOptions(loggedInUserId);
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(opts));
@@ -21,7 +20,6 @@ const server = createServer(async (req, res) => {
       res.end(JSON.stringify({ verified: verification.verified }));
     } else if (req.method === 'GET' && req.url?.startsWith('/generate-authentication-option')) {
       const opts = await generateAuthOptions(loggedInUserId);
-      console.log(opts);
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(opts));
     } else if (req.method === 'POST' && req.url === '/verify-authentication') {
